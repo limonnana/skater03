@@ -1,0 +1,26 @@
+{
+  "register": {
+    "title": "Registration",
+    "form": {
+      "button": "Register",
+      "addPicture": "Add Action picture",
+      "changePicture": "Change  picture"
+    },
+    "messages": {
+      "validate": {
+        "login": {
+          "required": "Your phone is required.",
+          "minlength": "Your phone is required to be at least 9 character.",
+          "maxlength": "Your phone cannot be longer than 13 characters.",
+          "pattern": "Your phone is invalid."
+        }
+      },
+      "success": "<strong>Registration saved!</strong> You are welcome to login now.",
+      "error": {
+        "fail": "<strong>Registration failed!</strong> Please try again later.",
+        "userexists": "<strong>Phone already registered!</strong> Please choose another one or recover your password.",
+        "emailexists": "<strong>Email is already in use!</strong> Please choose another one."
+      }
+    }
+  }
+}
