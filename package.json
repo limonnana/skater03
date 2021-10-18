@@ -61,8 +61,8 @@
     "ci:frontend:test": "npm run ci:frontend:build && npm test"
   },
   "config": {
-    "backend_port": "8090",
-    "default_environment": "prod",
+    "backend_port": "8080",
+    "default_environment": "dev",
     "packaging": "jar"
   },
   "dependencies": {
