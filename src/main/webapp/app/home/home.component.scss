@@ -1,23 +1,34 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
-
-.hipster {
-  display: inline-block;
-  width: 347px;
-  height: 497px;
-  background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
-  background-size: contain;
+.Progress {
+  height: 5px;
+  width: 100%;
+  background-color: rgb(67, 67, 68);
+  border-radius: 6px;
 }
 
-/* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media only screen and (-webkit-min-device-pixel-ratio: 2),
-  only screen and (-moz-min-device-pixel-ratio: 2),
-  only screen and (-o-min-device-pixel-ratio: 2/1),
-  only screen and (min-resolution: 192dpi),
-  only screen and (min-resolution: 2dppx) {
-  .hipster {
-    background: url('../../content/images/jhipster_family_member_1.svg') no-repeat center top;
-    background-size: contain;
-  }
+.seccion {
+  height: 2px;
+  background-color: red;
+  border-radius: 2px;
+}
+
+td {
+  line-height: 1.3;
+  font-size: 0.8rem;
+}
+
+.toGo {
+  background-color: aqua;
+}
+
+.contributors {
+  text-align: right;
+  right: 5px;
+  padding-right: 12px;
+  color: rgb(146, 148, 148);
+}
+.contributors a {
+  color: silver;
 }

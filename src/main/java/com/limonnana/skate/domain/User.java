@@ -33,6 +33,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Indexed
     private String login;
 
+    @Size(min = 9, max = 13)
+    @Field("phone")
+    private String phone;
+
     @JsonIgnore
     @NotNull
     @Size(min = 60, max = 60)
@@ -50,6 +54,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Size(min = 5, max = 254)
     @Indexed
     private String email;
+
+    @Size(max = 30)
+    @Field("country")
+    private String country;
 
     private boolean activated = false;
 
@@ -212,5 +220,21 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
             "}";
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }
