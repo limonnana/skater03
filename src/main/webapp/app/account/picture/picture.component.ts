@@ -5,11 +5,11 @@ import { UserService } from 'app/core/user/user.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
-  selector: 'jhi-profile-picture',
-  templateUrl: './profile-picture.component.html',
-  styleUrls: ['./profile-picture.component.scss'],
+  selector: 'jhi-picture',
+  templateUrl: './picture.component.html',
+  styleUrls: ['./picture.component.scss'],
 })
-export class ProfilePictureComponent implements OnInit {
+export class PictureComponent implements OnInit {
   login?: string;
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -24,7 +24,7 @@ export class ProfilePictureComponent implements OnInit {
 
   savePicture(): void {
     const pictureDTO = new PictureDTO(this.login, this.croppedImage);
-    this.userService.addProfilePicture(pictureDTO).subscribe(
+    this.userService.addPicture(pictureDTO).subscribe(
       () => this.onSaveSuccess(),
       () => this.onSaveError()
     );
@@ -48,7 +48,7 @@ export class ProfilePictureComponent implements OnInit {
 
   private onSaveSuccess(): void {
     // this.previousState();
-    this.router.navigate(['/account/settings']);
+    this.router.navigate(['']);
   }
 
   private onSaveError(): void {

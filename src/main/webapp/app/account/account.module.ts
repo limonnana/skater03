@@ -10,9 +10,12 @@ import { PasswordResetInitComponent } from './password-reset/init/password-reset
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
+import { PictureComponent } from './picture/picture.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ProfilePictureComponent } from './profile-picture/profile-picture.component';
 
 @NgModule({
-  imports: [SharedModule, RouterModule.forChild(accountState)],
+  imports: [ImageCropperModule, SharedModule, RouterModule.forChild(accountState)],
   declarations: [
     ActivateComponent,
     RegisterComponent,
@@ -21,6 +24,8 @@ import { accountState } from './account.route';
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SettingsComponent,
+    PictureComponent,
+    ProfilePictureComponent,
   ],
 })
 export class AccountModule {}

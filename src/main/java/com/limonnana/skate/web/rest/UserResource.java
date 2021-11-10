@@ -7,6 +7,7 @@ import com.limonnana.skate.security.AuthoritiesConstants;
 import com.limonnana.skate.service.MailService;
 import com.limonnana.skate.service.UserService;
 import com.limonnana.skate.service.dto.AdminUserDTO;
+import com.limonnana.skate.service.dto.PictureDTO;
 import com.limonnana.skate.web.rest.errors.BadRequestAlertException;
 import com.limonnana.skate.web.rest.errors.EmailAlreadyUsedException;
 import com.limonnana.skate.web.rest.errors.LoginAlreadyUsedException;

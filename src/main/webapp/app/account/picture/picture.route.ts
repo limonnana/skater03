@@ -1,11 +1,11 @@
 import { Route } from '@angular/router';
-import { Authority } from '../../shared/constants/authority.constants';
-import { ProfilePictureComponent } from './profile-picture.component';
+import { Authority } from 'app/shared/constants/authority.constants';
+import { PictureComponent } from './picture.component';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 
-export const profilePictureRoute: Route = {
-  path: 'profilepicture/:login',
-  component: ProfilePictureComponent,
+export const pictureRoute: Route = {
+  path: 'picture/:login',
+  component: PictureComponent,
   data: {
     authorities: [Authority.USER, Authority.ADMIN],
     pageTitle: 'picture.title',

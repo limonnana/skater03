@@ -1,11 +1,17 @@
 package com.limonnana.skate.web.rest;
 
+import com.limonnana.skate.domain.User;
+import com.limonnana.skate.repository.UserRepository;
 import com.limonnana.skate.service.UserService;
+import com.limonnana.skate.service.dto.PictureDTO;
 import com.limonnana.skate.service.dto.UserDTO;
+import com.limonnana.skate.web.rest.errors.BadRequestAlertException;
 import java.util.*;
 import java.util.Collections;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,6 +20,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
 
 @RestController
@@ -24,12 +31,18 @@ public class PublicUserResource {
         Arrays.asList("id", "login", "firstName", "lastName", "email", "activated", "langKey")
     );
 
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
+
     private final Logger log = LoggerFactory.getLogger(PublicUserResource.class);
 
     private final UserService userService;
 
-    public PublicUserResource(UserService userService) {
+    private final UserRepository userRepository;
+
+    public PublicUserResource(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -61,5 +74,21 @@ public class PublicUserResource {
     @GetMapping("/authorities")
     public List<String> getAuthorities() {
         return userService.getAuthorities();
+    }
+
+    @PostMapping("/users/profilepicture")
+    public ResponseEntity<User> addProfilePicture(@Valid @RequestBody PictureDTO pictureDTO) {
+        User user = userRepository.findOneByLogin(pictureDTO.getLogin().toLowerCase()).get();
+
+        if (user == null) {
+            throw new BadRequestAlertException(" user with that login doesn't exist ", "UserNULL", "UserNULL");
+        }
+        user.setProfilePicture(pictureDTO.getPicture());
+        user = userRepository.save(user);
+
+        return com.limonnana.skate.web.rest.ResponseUtil.wrapOrNotFound(
+            Optional.of(user),
+            HeaderUtil.createAlert(applicationName, "Profile Picture has been updated", user.getLogin())
+        );
     }
 }

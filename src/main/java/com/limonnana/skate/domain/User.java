@@ -69,6 +69,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("image_url")
     private String imageUrl;
 
+    @Field("profilePicture")
+    private String profilePicture;
+
     @Size(max = 20)
     @Field("activation_key")
     @JsonIgnore
@@ -236,5 +239,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

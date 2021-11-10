@@ -7,6 +7,10 @@ export class Account {
     public langKey: string,
     public lastName: string | null,
     public login: string,
-    public imageUrl: string | null
+    public imageUrl: string | null,
+    public picture: string | null | undefined,
+    public profilePicture: string | null,
+    public country: string | null,
+    public phone: string | null
   ) {}
 }
