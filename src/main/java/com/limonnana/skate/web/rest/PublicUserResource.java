@@ -1,5 +1,6 @@
 package com.limonnana.skate.web.rest;
 
+import com.limonnana.skate.config.Constants;
 import com.limonnana.skate.domain.User;
 import com.limonnana.skate.repository.UserRepository;
 import com.limonnana.skate.service.UserService;
@@ -9,6 +10,7 @@ import com.limonnana.skate.web.rest.errors.BadRequestAlertException;
 import java.util.*;
 import java.util.Collections;
 import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -89,6 +91,16 @@ public class PublicUserResource {
         return com.limonnana.skate.web.rest.ResponseUtil.wrapOrNotFound(
             Optional.of(user),
             HeaderUtil.createAlert(applicationName, "Profile Picture has been updated", user.getLogin())
+        );
+    }
+
+    @GetMapping("/getuser/{login}")
+    public ResponseEntity<User> getUser(@PathVariable @Pattern(regexp = Constants.LOGIN_REGEX) String login) {
+        log.debug("REST request to get User : {}", login);
+        User user = userRepository.findOneByLogin(login).get();
+        return com.limonnana.skate.web.rest.ResponseUtil.wrapOrNotFound(
+            Optional.of(user),
+            HeaderUtil.createAlert(applicationName, "User found with login: ", user.getLogin())
         );
     }
 }

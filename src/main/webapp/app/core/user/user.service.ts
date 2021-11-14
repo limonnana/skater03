@@ -10,6 +10,7 @@ import { IPictureDTO } from './pictureDTO.model';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   public resourceUrl = SERVER_API_URL + 'api/users';
+  public resourceUrlPublic = SERVER_API_URL + 'api';
 
   constructor(private http: HttpClient) {}
 
@@ -31,6 +32,10 @@ export class UserService {
 
   find(login: string): Observable<IUser> {
     return this.http.get<IUser>(`${this.resourceUrl}/${login}`);
+  }
+
+  getUser(login: string): Observable<IUser> {
+    return this.http.get<IUser>(`${this.resourceUrlPublic}/getuser/${login}`);
   }
 
   query(req?: Pagination): Observable<HttpResponse<IUser[]>> {

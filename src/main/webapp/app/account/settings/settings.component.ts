@@ -5,6 +5,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
 import { LANGUAGES } from 'app/config/language.constants';
 import { Router } from '@angular/router';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-settings',
@@ -30,6 +31,7 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
+    private userService: UserService,
     private fb: FormBuilder,
     private translateService: TranslateService,
     private router: Router
@@ -38,8 +40,8 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => {
       if (account) {
-        this.picture = account.picture;
-        this.profilePicture = account.profilePicture;
+        //  this.picture = account.picture;
+        //  this.profilePicture = account.profilePicture;
         this.settingsForm.patchValue({
           firstName: account.firstName,
           lastName: account.lastName,
@@ -48,9 +50,18 @@ export class SettingsComponent implements OnInit {
           country: account.country,
           langKey: account.langKey,
         });
-
+        // this.setImages(account);
         this.account = account;
       }
+    });
+
+    this.setImages(this.account!);
+  }
+
+  setImages(account: Account): void {
+    this.userService.getUser(this.account!.login).subscribe(user => {
+      this.profilePicture = user.profilePicture!;
+      this.picture = user.picture;
     });
   }
 
