@@ -94,6 +94,22 @@ public class PublicUserResource {
         );
     }
 
+    @PostMapping("/users/picture")
+    public ResponseEntity<User> addPicture(@Valid @RequestBody PictureDTO pictureDTO) {
+        User user = userRepository.findOneByLogin(pictureDTO.getLogin().toLowerCase()).get();
+
+        if (user == null) {
+            throw new BadRequestAlertException(" user with that login doesn't exist ", "UserNULL", "UserNULL");
+        }
+        user.setPicture(pictureDTO.getPicture());
+        user = userRepository.save(user);
+
+        return com.limonnana.skate.web.rest.ResponseUtil.wrapOrNotFound(
+            Optional.of(user),
+            HeaderUtil.createAlert(applicationName, "Action Picture has been updated", user.getLogin())
+        );
+    }
+
     @GetMapping("/getuser/{login}")
     public ResponseEntity<User> getUser(@PathVariable @Pattern(regexp = Constants.LOGIN_REGEX) String login) {
         log.debug("REST request to get User : {}", login);

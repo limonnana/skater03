@@ -72,6 +72,9 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Field("profilePicture")
     private String profilePicture;
 
+    @Field("picture")
+    private String picture;
+
     @Size(max = 20)
     @Field("activation_key")
     @JsonIgnore
@@ -248,5 +251,13 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

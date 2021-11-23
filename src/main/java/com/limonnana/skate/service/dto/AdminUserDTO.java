@@ -30,6 +30,9 @@ public class AdminUserDTO {
     @Size(min = 5, max = 254)
     private String email;
 
+    @Size(max = 250)
+    private String country;
+
     @Size(max = 256)
     private String imageUrl;
 
@@ -189,5 +192,13 @@ public class AdminUserDTO {
             ", lastModifiedDate=" + lastModifiedDate +
             ", authorities=" + authorities +
             "}";
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

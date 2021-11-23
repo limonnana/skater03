@@ -130,6 +130,7 @@ public class AccountResource {
             userDTO.getFirstName(),
             userDTO.getLastName(),
             userDTO.getEmail(),
+            userDTO.getCountry(),
             userDTO.getLangKey(),
             userDTO.getImageUrl()
         );
