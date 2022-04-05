@@ -38,9 +38,22 @@
         <br />
       </div>
 
-      --> to Refresh the picture Reload Page <br /><br />
+      <br /><br />
       <form name="form" role="form" (ngSubmit)="save()" [formGroup]="settingsForm" *ngIf="account" novalidate>
         <div class="form-group">
+          <label class="form-control-label" for="login" jhiTranslate="settings.form.login">Login</label>
+          <input
+            type="text"
+            class="form-control"
+            id="login"
+            name="login"
+            readonly
+            placeholder="{{ 'settings.form.login.placeholder' | translate }}"
+            formControlName="login"
+          />
+
+          <br />
+
           <label class="form-control-label" for="firstName" jhiTranslate="settings.form.firstname">First Name</label>
           <input
             type="text"

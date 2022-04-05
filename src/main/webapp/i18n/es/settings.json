@@ -2,6 +2,8 @@
   "settings": {
     "title": "Ajustes del usuario: <strong>{{username}}</strong>",
     "form": {
+      "login": "Dato de usuario",
+      "login.placeholder": "El dato del usuario es su telefono",
       "firstname": "Nombre",
       "firstname.placeholder": "Su nombre",
       "lastname": "Apellidos",
